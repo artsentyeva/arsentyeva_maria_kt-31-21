@@ -1,0 +1,6 @@
+@ArsentyevaMashaKT3121_HostAddress = http://localhost:5084
+
+GET {{ArsentyevaMashaKT3121_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
