@@ -21,13 +21,23 @@ namespace ArsentyevaMashaKT3121.Controllers
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            _logger.LogError("Method was called");
+            return Enumerable.Range(1, 5).Select(index => new WeatherForecast()
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
                 TemperatureC = Random.Shared.Next(-20, 55),
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+        [HttpPost(Name = "AddNewSummary")]
+        public string[] AddNewSummary(string newSummary)
+        {
+            _logger.LogError("New method was called");
+
+            var list = Summaries.ToList();  
+            list.Add(newSummary);
+            return list.ToArray();
         }
     }
 }
