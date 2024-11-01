@@ -31,13 +31,14 @@ namespace ArsentyevaMashaKT3121.Controllers
             .ToArray();
         }
         [HttpPost(Name = "AddNewSummary")]
-        public string[] AddNewSummary(string newSummary)
+        public string[] AddNewSummary([FromBody] string newSummary)
         {
             _logger.LogError("New method was called");
 
-            var list = Summaries.ToList();  
+            var list = Summaries.ToList();
             list.Add(newSummary);
             return list.ToArray();
         }
+
     }
 }
