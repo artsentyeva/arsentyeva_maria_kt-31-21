@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArsentyevaMashaKT3121", "ArsentyevaMashaKT3121\ArsentyevaMashaKT3121.csproj", "{14848E9E-B3CA-41F3-8D80-C462830F67C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArsentyevaMashaKT3121", "ArsentyevaMashaKT3121\ArsentyevaMashaKT3121.csproj", "{14848E9E-B3CA-41F3-8D80-C462830F67C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArsentyevaMashaKT3121.Tests", "ArsentyevaMashaKT3121.Tests\ArsentyevaMashaKT3121.Tests.csproj", "{56E55231-CDF4-4F76-B3EA-318D1E0D18DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{14848E9E-B3CA-41F3-8D80-C462830F67C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14848E9E-B3CA-41F3-8D80-C462830F67C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14848E9E-B3CA-41F3-8D80-C462830F67C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56E55231-CDF4-4F76-B3EA-318D1E0D18DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56E55231-CDF4-4F76-B3EA-318D1E0D18DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56E55231-CDF4-4F76-B3EA-318D1E0D18DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56E55231-CDF4-4F76-B3EA-318D1E0D18DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
