@@ -4,6 +4,8 @@ using NLog;
 using NLog.Web;
 using ArsentyevaMashaKT3121.Controllers;
 using ArsentyevaMashaKT3121.Database;
+using static ArsentyevaMashaKT3121.ServiceExtensions.ServiceExtensions;
+using ArsentyevaMashaKT3121.Interfaces.TeachersInterfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +25,13 @@ try
     builder.Services.AddDbContext<TeacherDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+    builder.Services.AddScoped<IDepartmentService, DepartmentService>();
+ 
+/*    builder.Services.AddDbContext<DepartmentDbContext>(options =>
+            options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));*/
+
+    builder.Services.AddServices();
+
 
     var app = builder.Build();
 
@@ -32,6 +41,7 @@ try
         app.UseSwagger();
         app.UseSwaggerUI();
     }
+
 
     app.UseAuthorization();
 

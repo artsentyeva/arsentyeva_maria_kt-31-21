@@ -11,11 +11,11 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
         public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder
-                .HasKey(p => p.DepaetmentId)
+                .HasKey(p => p.DepartmentId)
                 .HasName($"pk_{TableName}_departmet_id");
 
             builder
-                .Property(p => p.DepaetmentId)
+                .Property(p => p.DepartmentId)
                 .ValueGeneratedOnAdd() // Указываем генерацию значения автоматически
                 .HasColumnName("departmet_id")
                 .HasComment("Идентификатор кафедры");
@@ -27,20 +27,22 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
                 .HasMaxLength(100)
                 .HasComment("Название кафедры");
 
-            builder
+           builder
                 .Property(p => p.DepartmentHeadId)
                 .IsRequired()
                 .HasColumnName("c_department_head_id")
                 .HasMaxLength(100)
                 .HasComment("Заведущий кафедры");
 
-            builder.ToTable(TableName);
-
-           /* // Связь с преподавателями
+/*            // Настройка связи с преподавателями
             builder
-                .HasMany(p => p.Teachers)
-                .WithMany(t => t.Department)
-                .UsingEntity(j => j.ToTable("TeacherDepartment")); // Промежуточная таблица связей*/
+                 .HasOne(d => d.DepartmentHead) // Связь с заведующим
+                 .WithMany() // У заведующего нет списка кафедр
+                 .HasForeignKey(d => d.DepartmentHeadId)
+                 .OnDelete(DeleteBehavior.SetNull); // Ограничение удаления
+*/
+            builder.ToTable(TableName);
         }
+
     }
 }

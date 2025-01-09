@@ -31,7 +31,7 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
                 .IsRequired()
                 .HasColumnName("c_teacher_department_id")
                 .HasMaxLength(100)
-                .HasComment("Кафедра на которой работает преподаватель");
+                .HasComment("Кафедра, на которой работает преподаватель");
 
 
             builder
@@ -54,13 +54,13 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
                 .IsRequired()
                 .HasColumnName("c_teacher_subject_id")
                 .HasMaxLength(100)
-                .HasComment("Дисциплины преподавателя");
+                .HasComment("Дисциплина преподавателя");
 
             builder.ToTable(TableName);
 
             /////////////////////////////////////////////////////
-            builder.Property(p => p.AcademicDegreeId).IsRequired()
-            .HasColumnName("c_teacher_academic_degree_id");
+/*            builder.Property(p => p.AcademicDegreeId).IsRequired()
+            .HasColumnName("c_teacher_academic_degree_id");*/
 
             builder.HasOne(p => p.AcademicDegree)
                 .WithMany()
@@ -73,22 +73,23 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
 
             /////////////////////////////////////////////////////
             ///
-            builder.Property(p => p.DepartmentId).IsRequired()
+/*            builder.Property(p => p.DepartmentId).IsRequired()
             .HasColumnName("c_teacher_department_id");
+*/
 
-            builder.HasOne(p => p.Department)
-                .WithMany()
-                .HasForeignKey(p => p.DepartmentId)
-                .HasConstraintName("fk_f_department_id")
-                .OnDelete(DeleteBehavior.Cascade);
+            builder
+                .HasOne(t => t.Department) // Преподаватель связан с кафедрой
+                .WithMany(d => d.Teachers) // Кафедра может иметь много преподавателей
+                .HasForeignKey(t => t.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict); // Ограничение удаления
 
             builder.Navigation(p => p.Department)
                 .AutoInclude();
 
             /////////////////////////////////////////////////////
             ///
-            builder.Property(p => p.PositionId).IsRequired()
-           .HasColumnName("c_teacher_position_id");
+            /*builder.Property(p => p.PositionId).IsRequired()
+           .HasColumnName("c_teacher_position_id");*/
 
             builder.HasOne(p => p.Position)
                 .WithMany()
@@ -101,8 +102,8 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
 
             /////////////////////////////////////////////////////
             ///
-            builder.Property(p => p.SubjectId).IsRequired()
-           .HasColumnName("c_teacher_subject_id");
+           /* builder.Property(p => p.SubjectId).IsRequired()
+           .HasColumnName("c_teacher_subject_id");*/
 
             builder.HasOne(p => p.Subject)
                 .WithMany()

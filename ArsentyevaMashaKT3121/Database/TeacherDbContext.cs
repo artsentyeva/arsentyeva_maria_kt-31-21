@@ -7,11 +7,11 @@ namespace ArsentyevaMashaKT3121.Database
     public class TeacherDbContext :DbContext
     {
         //Добавление таблиц
-        DbSet<AcademicDegree> AcademicDegree { get; set; }
-        DbSet<Department> Department { get; set; }
-        DbSet<Position>  Positions { get; set; }
-        DbSet<Subject> Subject { get; set; }
-        DbSet<Teacher> Teacher { get; set; }
+        public DbSet<AcademicDegree> AcademicDegree { get; set; }
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Position>  Positions { get; set; }
+        public DbSet<Subject> Subject { get; set; }
+        public DbSet<Teacher> Teacher { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

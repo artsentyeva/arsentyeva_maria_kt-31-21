@@ -2,11 +2,16 @@
 {
     public class Department
     {
-        public int DepaetmentId { get; set; } // id кафедры
+        public int DepartmentId { get; set; } // id кафедры
         public string DepartmentName { get; set; } // название кафедры
-        public int DepartmentHeadId { get; set; } // заведуюющий
+        public int DepartmentHeadId { get; set; } // заведующий кафедрой
 
-        // Связь с преподавателями
-       //public ICollection<Teacher> Teachers { get; set; } = new List<Teacher>(); // Множество преподавателей для учёной степени
+        //public Teacher Head { get; set; } // Навигационное свойство для заведующего
+        /*        public List<Teacher> Teacher { get; set; } = new(); // Список преподавателей*/
+
+        public virtual Teacher DepartmentHead { get; set; } // Навигационное свойство
+        public virtual ICollection<Teacher> Teachers { get; set; }
+
     }
+
 }
