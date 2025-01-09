@@ -5,6 +5,7 @@ using NLog.Web;
 using ArsentyevaMashaKT3121.Controllers;
 using ArsentyevaMashaKT3121.Database;
 using ArsentyevaMashaKT3121.Interfaces.TeacherInterfaces;
+using ArsentyevaMashaKT3121.Interfaces.SubjectInterfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +27,10 @@ try
 
     //builder.Services.AddServices();
     builder.Services.AddScoped<ITeacherService, TeacherService>();
+    builder.Services.AddDbContext<TeacherDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddScoped<ISubjectService, SubjectService>();
     builder.Services.AddDbContext<TeacherDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
