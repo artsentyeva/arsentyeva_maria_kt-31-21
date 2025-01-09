@@ -28,14 +28,13 @@ namespace ArsentyevaMashaKT3121.Migrations
                 name: "cd_Department",
                 columns: table => new
                 {
-                    departmet_id = table.Column<int>(type: "integer", nullable: false, comment: "Идентификатор кафедры")
+                    department_id = table.Column<int>(type: "integer", nullable: false, comment: "Идентификатор кафедры")
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    c_department_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false, comment: "Название кафедры"),
-                    c_department_head_id = table.Column<int>(type: "integer", maxLength: 100, nullable: false, comment: "Заведущий кафедры")
+                    c_department_name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false, comment: "Название кафедры")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("pk_cd_Department_departmet_id", x => x.departmet_id);
+                    table.PrimaryKey("pk_cd_Department_departmet_id", x => x.department_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -89,7 +88,7 @@ namespace ArsentyevaMashaKT3121.Migrations
                         name: "fk_f_department_id",
                         column: x => x.c_teacher_department_id,
                         principalTable: "cd_Department",
-                        principalColumn: "departmet_id",
+                        principalColumn: "department_id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "fk_f_position_id",

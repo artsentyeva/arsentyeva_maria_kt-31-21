@@ -1,4 +1,4 @@
-﻿using ArsentyevaMashaKT3121.Properties.Models;
+﻿using ArsentyevaMashaKT3121.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -11,13 +11,13 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
         public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder
-                .HasKey(p => p.DepaetmentId)
+                .HasKey(p => p.DepartmentId)
                 .HasName($"pk_{TableName}_departmet_id");
 
             builder
-                .Property(p => p.DepaetmentId)
+                .Property(p => p.DepartmentId)
                 .ValueGeneratedOnAdd() // Указываем генерацию значения автоматически
-                .HasColumnName("departmet_id")
+                .HasColumnName("department_id")
                 .HasComment("Идентификатор кафедры");
 
             builder
@@ -27,20 +27,20 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
                 .HasMaxLength(100)
                 .HasComment("Название кафедры");
 
-            builder
+            /*builder
                 .Property(p => p.DepartmentHeadId)
                 .IsRequired()
                 .HasColumnName("c_department_head_id")
                 .HasMaxLength(100)
-                .HasComment("Заведущий кафедры");
+                .HasComment("Заведущий кафедры");*/
 
             builder.ToTable(TableName);
 
-           /* // Связь с преподавателями
+            // Связь с преподавателями
             builder
-                .HasMany(p => p.Teachers)
-                .WithMany(t => t.Department)
-                .UsingEntity(j => j.ToTable("TeacherDepartment")); // Промежуточная таблица связей*/
+                .HasMany(p => p.Teacher)
+                .WithOne(t => t.Department)
+                .HasForeignKey(t => t.DepartmentId); 
         }
     }
 }

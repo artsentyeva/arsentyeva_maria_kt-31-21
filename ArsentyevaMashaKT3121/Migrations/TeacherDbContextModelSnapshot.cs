@@ -21,7 +21,7 @@ namespace ArsentyevaMashaKT3121.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.AcademicDegree", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.AcademicDegree", b =>
                 {
                     b.Property<int>("AcademicDegreeId")
                         .ValueGeneratedOnAdd()
@@ -44,21 +44,15 @@ namespace ArsentyevaMashaKT3121.Migrations
                     b.ToTable("cd_AcademicDegree", (string)null);
                 });
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.Department", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Department", b =>
                 {
-                    b.Property<int>("DepaetmentId")
+                    b.Property<int>("DepartmentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
-                        .HasColumnName("departmet_id")
+                        .HasColumnName("department_id")
                         .HasComment("Идентификатор кафедры");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("DepaetmentId"));
-
-                    b.Property<int>("DepartmentHeadId")
-                        .HasMaxLength(100)
-                        .HasColumnType("integer")
-                        .HasColumnName("c_department_head_id")
-                        .HasComment("Заведущий кафедры");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("DepartmentId"));
 
                     b.Property<string>("DepartmentName")
                         .IsRequired()
@@ -67,13 +61,13 @@ namespace ArsentyevaMashaKT3121.Migrations
                         .HasColumnName("c_department_name")
                         .HasComment("Название кафедры");
 
-                    b.HasKey("DepaetmentId")
+                    b.HasKey("DepartmentId")
                         .HasName("pk_cd_Department_departmet_id");
 
                     b.ToTable("cd_Department", (string)null);
                 });
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.Position", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Position", b =>
                 {
                     b.Property<int>("PositionId")
                         .ValueGeneratedOnAdd()
@@ -96,7 +90,7 @@ namespace ArsentyevaMashaKT3121.Migrations
                     b.ToTable("cd_Position", (string)null);
                 });
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.Subject", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Subject", b =>
                 {
                     b.Property<int>("SubjectId")
                         .ValueGeneratedOnAdd()
@@ -119,7 +113,7 @@ namespace ArsentyevaMashaKT3121.Migrations
                     b.ToTable("cd_Subject", (string)null);
                 });
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.Teacher", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
                         .ValueGeneratedOnAdd()
@@ -174,30 +168,30 @@ namespace ArsentyevaMashaKT3121.Migrations
                     b.ToTable("cd_Teacher", (string)null);
                 });
 
-            modelBuilder.Entity("ArsentyevaMashaKT3121.Properties.Models.Teacher", b =>
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Teacher", b =>
                 {
-                    b.HasOne("ArsentyevaMashaKT3121.Properties.Models.AcademicDegree", "AcademicDegree")
+                    b.HasOne("ArsentyevaMashaKT3121.Models.AcademicDegree", "AcademicDegree")
                         .WithMany()
                         .HasForeignKey("AcademicDegreeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_f_academic_degree_id");
 
-                    b.HasOne("ArsentyevaMashaKT3121.Properties.Models.Department", "Department")
-                        .WithMany()
+                    b.HasOne("ArsentyevaMashaKT3121.Models.Department", "Department")
+                        .WithMany("Teacher")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_f_department_id");
 
-                    b.HasOne("ArsentyevaMashaKT3121.Properties.Models.Position", "Position")
+                    b.HasOne("ArsentyevaMashaKT3121.Models.Position", "Position")
                         .WithMany()
                         .HasForeignKey("PositionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_f_position_id");
 
-                    b.HasOne("ArsentyevaMashaKT3121.Properties.Models.Subject", "Subject")
+                    b.HasOne("ArsentyevaMashaKT3121.Models.Subject", "Subject")
                         .WithMany()
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -211,6 +205,11 @@ namespace ArsentyevaMashaKT3121.Migrations
                     b.Navigation("Position");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("ArsentyevaMashaKT3121.Models.Department", b =>
+                {
+                    b.Navigation("Teacher");
                 });
 #pragma warning restore 612, 618
         }

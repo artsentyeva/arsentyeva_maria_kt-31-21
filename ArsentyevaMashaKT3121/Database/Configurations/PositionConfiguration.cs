@@ -1,4 +1,4 @@
-﻿using ArsentyevaMashaKT3121.Properties.Models;
+﻿using ArsentyevaMashaKT3121.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

@@ -1,4 +1,4 @@
-﻿using ArsentyevaMashaKT3121.Properties.Models;
+﻿using ArsentyevaMashaKT3121.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -77,7 +77,7 @@ namespace ArsentyevaMashaKT3121.Database.Configurations
             .HasColumnName("c_teacher_department_id");
 
             builder.HasOne(p => p.Department)
-                .WithMany()
+                .WithMany(d => d.Teacher)
                 .HasForeignKey(p => p.DepartmentId)
                 .HasConstraintName("fk_f_department_id")
                 .OnDelete(DeleteBehavior.Cascade);

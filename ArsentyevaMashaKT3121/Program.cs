@@ -4,6 +4,7 @@ using NLog;
 using NLog.Web;
 using ArsentyevaMashaKT3121.Controllers;
 using ArsentyevaMashaKT3121.Database;
+using ArsentyevaMashaKT3121.Interfaces.TeacherInterfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,17 @@ try
 
     builder.Services.AddDbContext<TeacherDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    //builder.Services.AddServices();
+    builder.Services.AddScoped<ITeacherService, TeacherService>();
+    builder.Services.AddDbContext<TeacherDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    });
 
 
     var app = builder.Build();

@@ -1,8 +1,8 @@
-﻿namespace ArsentyevaMashaKT3121.Properties.Models
+﻿namespace ArsentyevaMashaKT3121.Models
 {
     public class AcademicDegree
     {
-        public int AcademicDegreeId {  get; set; }
+        public int AcademicDegreeId { get; set; }
         public string AcademicDegreeName { get; set; } // название
 
         ////Связь с преподавателями
